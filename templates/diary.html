@@ -1,118 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    {% if page.title %}
-    <title>{{ page.title }}</title>
-    {% else %}
-    <title>Cloud's echo</title>
-    {% endif %}
-    <meta name="description" content="A diary about nature">
-    <meta name="author" content="Aram">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      /* Embedding the diary-dark.css styles directly in the HTML file */
-      body.dark-theme {
-          background-color: #1a1a1a; /* Dark background color */
-          color: #fff; /* Light text color */
-      }
+<head>
+  <meta charset="UTF-8">
+  <title>{% if page.title %}{{ page.title }}{% else %}Cloud's echo{% endif %}</title>
+  <meta name="description" content="A diary about nature">
+  <meta name="author" content="Aram">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body.dark-theme {
+      background-color: #1a1a1a;
+      color: #fff;
+    }
 
-      hr {
-          border-color: #fff; /* Light color for horizontal lines */
-      }
+    hr {
+      border-color: #fff;
+    }
 
-      code {
-          color: #00ff00; /* Green color for code */
-      }
+    code {
+      color: #00ff00;
+    }
 
-      .posts {
-          border: 1px solid #666; /* Dark border for posts */
-      }
+    .posts {
+      border: 1px solid #666;
+    }
 
-      .post {
-          background-color: #333; /* Dark background for each post */
-          color: #fff; /* Light text color for posts */
-      }
+    .post {
+      background-color: #333;
+      color: #fff;
+    }
 
-      .post__summary {
-          color: #ccc; /* Medium-light text color for post summary */
-      }
+    .post__summary {
+      color: #ccc;
+    }
 
-      .pagination a {
-          color: #fff; /* Light text color for pagination links */
-      }
+    .pagination a {
+      color: #fff;
+    }
 
-      .pagination a:hover {
-          background-color: #555; /* Darker background on hover for pagination links */
-      }
+    .pagination a:hover {
+      background-color: #555;
+    }
 
-      .previous, .next {
-          background-color: #555; /* Dark background for previous and next links */
-      }
+    .previous, .next {
+      background-color: #555;
+    }
 
-      .previous:hover, .next:hover {
-          background-color: #777; /* Darker background on hover for previous and next links */
-      }
-    </style>
- <!--  <link rel="icon" type="image/png" href="cloud.png"> -->
-  </head>
-  <body class="dark-theme" dir="rtl">
-    <header>
-      <h2>{{ section.title }}</h2>
-      <hr/>
-    </header>
-    <p>
-      مرحبا في مذكراتي المتواضعة</b>.<br>
-    <figure>
-  <img src="https://i.pinimg.com/564x/cd/e8/da/cde8dad1a249743d2174957ba2263549.jpg" alt="التخييم و القراءة" style="width: 200px; height: 200px;">
-  <figcaption><a href="https://anilist.co/anime/98444/Yuru-Camp" style="color: lightblue"><em>يورو كامب</em></a></figcaption>
-    </figure>
-
-    
-    <hr/>    
- <h3> مخططاتي : </h3>
-  <label>
-    <input type="checkbox" disabled>
-    البدأ في كتابة المذكرات
-  </label>
-  <br>
-  <label>
-    <input type="checkbox" disabled>
-    كتابة سكريبت لأتمتت صنع الملفات التي تكتب فيها المذكرات
-  </label>
-  <br>
-  <label>
-    <input type="checkbox" disabled>
-    اضافة صورة مصغرة للموقع
-  </label>
-  <br>
-  <label>
-    <input type="checkbox" disabled>
-    اضافة خطوط خاصة
-  </label>
-  <br>
-  <label>
-    <input type="checkbox" disabled>
-    اضافة نظام ألوان
-  </label>
-
-    <div class="posts">
-      {% for page in paginator.pages  %}
-      <article class="post" id="{{ page.title }}">
- <h4><a href="#{{ page.title }}"> # </a> {{ page.title }}</h4>
- <div class="post__summary">
-   {{ page.content | safe }}
- </div>
-      </article>
-      {% endfor %}
+    .previous:hover, .next:hover {
+      background-color: #777;
+    }
+  </style>
+  <!-- <link rel="icon" type="image/png" href="cloud.png"> -->
+</head>
+<body class="dark-theme" dir="rtl">
+<header>
+  <h2>{{ section.title }}</h2>
+  <hr>
+</header>
+<p>
+  مرحبا في مذكراتي المتواضعة.<br>
+  <figure>
+    <img alt="التخييم و القراءة" src="https://i.pinimg.com/564x/cd/e8/da/cde8dad1a249743d2174957ba2263549.jpg" style="width: 200px; height: 200px;">
+    <figcaption><a href="https://anilist.co/anime/98444/Yuru-Camp" style="color: lightblue;"><em>يورو كامب</em></a></figcaption>
+  </figure>
+  <hr>
+  <h3>أهدافي:</h3>
+  <h4>
+    <label><input type="checkbox" disabled>البدأ في كتابة المذكرات</label><br>
+    <label><input type="checkbox" disabled>كتابة سكريبت لأتمتت صنع الملفات التي يكتب فيها المذكرات</label><br>
+    <label><input type="checkbox" disabled>اضافة صورة مصغرة للموقع</label><br>
+    <label><input type="checkbox" disabled>اضافة خطوط خاصة</label><br>
+    <label><input type="checkbox" disabled>اضافة نظام ألوان</label>
+  </h4>
+</p>
+<div class="posts">
+  {% for page in paginator.pages %}
+  <article class="post" id="{{ page.title }}">
+    <h4><a href="#{{ page.title }}">#</a> {{ page.title }}</h4>
+    <div class="post__summary">
+      {{ page.content | safe }}
     </div>
-    <nav class="pagination">
-      {% if paginator.previous %}
-      <a class="previous" href="{{ paginator.previous }}">‹ Prev</a>
-      {% endif %}
-      {% if paginator.next %}
-      <a class="next" href="{{ paginator.next }}">Next ›</a>
-      {% endif %}
-    </nav>
-  </body>
+  </article>
+  {% endfor %}
+</div>
+<nav class="pagination">
+  {% if paginator.previous %}
+  <a class="previous" href="{{ paginator.previous }}">‹ Prev</a>
+  {% endif %}
+  {% if paginator.next %}
+  <a class="next" href="{{ paginator.next }}">Next ›</a>
+  {% endif %}
+</nav>
+</body>
 </html>
